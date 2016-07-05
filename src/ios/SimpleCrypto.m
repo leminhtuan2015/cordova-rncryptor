@@ -3,7 +3,7 @@
 #import <Foundation/Foundation.h>
 #import <Security/SecRandom.h>
 #import <Cordova/CDV.h>
-#import <NSData+Base64.h>
+#import "NSData+Base64.h"
 #import "RNEncryptor.h"
 #import "RNDecryptor.h"
 
