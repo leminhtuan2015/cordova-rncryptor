@@ -34,6 +34,6 @@
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml" />
     <source-file src="src/android/jncryptor-1.0.1.jar" target-dir="libs"/>
-    <source-file src="src/android/SimpleCrypto.java" target-dir="src/com/disusered/simplecrypto/SimpleCrypto" />
+    <source-file src="src/android/SimpleCrypto.java" target-dir="src/com/leminhtuan/simplecrypto/SimpleCrypto" />
   </platform>
 </plugin>
