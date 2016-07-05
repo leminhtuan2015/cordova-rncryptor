@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.disusered.simplecrypto" version="0.2.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.leminhtuan.cordovarncryptor" version="0.2.0">
   <name>SimpleCrypto</name>
   <js-module name="SimpleCrypto" src="www/SimpleCrypto.js">
     <clobbers target="cordova.plugins.SimpleCrypto" />
@@ -29,11 +29,11 @@
   <platform name="android">
     <config-file parent="/*" target="res/xml/config.xml">
       <feature name="SimpleCrypto">
-        <param name="android-package" value="com.leminhtuan.simplecrypto.SimpleCrypto" />
+        <param name="android-package" value="com.disusered.simplecrypto.SimpleCrypto" />
       </feature>
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml" />
     <source-file src="src/android/jncryptor-1.0.1.jar" target-dir="libs"/>
-    <source-file src="src/android/SimpleCrypto.java" target-dir="src/com/leminhtuan/simplecrypto/SimpleCrypto" />
+    <source-file src="src/android/SimpleCrypto.java" target-dir="src/com/disusered/simplecrypto/SimpleCrypto" />
   </platform>
 </plugin>
