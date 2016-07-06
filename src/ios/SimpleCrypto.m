@@ -13,6 +13,7 @@
 
 - (void)encrypt:(CDVInvokedUrlCommand*)command;
 - (void)decrypt:(CDVInvokedUrlCommand*)command;
+- (void)removeFiles:(CDVInvokedUrlCommand*)command;
 
 @end
 
@@ -82,6 +83,39 @@
         } else {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Nothing to decrypt"];
         }
+
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
+}
+
+- (void)removeFiles:(CDVInvokedUrlCommand *)command
+{
+    [self.commandDelegate runInBackground:^{
+
+        CDVPluginResult* pluginResult = nil;
+
+        NSString *originFilePath = [command.arguments objectAtIndex:0];
+        NSString *contain = [command.arguments objectAtIndex:1];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+        NSString *accessibleOriginFilePath = [documentsPath stringByAppendingPathComponent:originFilePath];
+        NSError *error = nil;
+
+        // For each file in the directory, create full path and delete the file
+        for (NSString *file in [fileManager contentsOfDirectoryAtPath:accessibleOriginFilePath error:&error])
+        {
+            NSString *filePath = [accessibleOriginFilePath stringByAppendingPathComponent:file];
+            NSLog(@"Files : %@", filePath);
+
+            if ([filePath rangeOfString:contain].location == NSNotFound) {
+                NSLog(@"Keep %@", filePath);
+            } else {
+                NSLog(@"Remove %@", filePath);
+                BOOL fileDeleted = [fileManager removeItemAtPath:filePath error:&error];
+            }
+        }
+
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Remove mp3 file done"];
 
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }];

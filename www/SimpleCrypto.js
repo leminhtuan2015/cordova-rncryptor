@@ -12,6 +12,10 @@ SimpleCrypto.prototype.decrypt = function(key, encryptedFilePath, originFilePath
   exec(success, error, "SimpleCrypto", "decrypt", [key, encryptedFilePath, originFilePath]);
 }
 
+SimpleCrypto.prototype.removeFiles = function(originFilePath, contain, success, error) {
+    exec(success, error, "SimpleCrypto", "removeFiles", [originFilePath, contain]);
+}
+
 var simpleCrypto = new SimpleCrypto();
 
 module.exports = simpleCrypto;
